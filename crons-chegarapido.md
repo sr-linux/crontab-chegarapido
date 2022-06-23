@@ -99,4 +99,4 @@
 
 # expira cupons a cada hora
 
-* * * * * curl https://chegarapido.com.br/cron/cupons-expira.php & echo 'Cron cupons aniversariantes = ok' >> ~/cron.log
+0 * * * * curl https://chegarapido.com.br/cron/cupons-expira.php & echo 'Cron cupons aniversariantes = ok' >> ~/cron.log
