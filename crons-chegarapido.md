@@ -1,8 +1,31 @@
-"
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
 
-# ####################################################################
-# ########### crons chegarapido delivery #############################
-# ####################################################################
+
+#####################################################################
+############ crons chegarapido delivery #############################
+#####################################################################
 # o complemento de comando " & echo" mostra na tela se a cron foi
 # executada com sucesso...
 
@@ -41,7 +64,7 @@
 0,30 8-23 * * * curl https://chegarapido.com.br/cron/cron/add-id-cidade.php & echo 'Cron add id cidade = ok' >> ~/cron.log
 
 # emails lidos a meia noite uuuhl
-0 0 * * * curl https://chegarapido.com.br/cron/email-total-de-lidos.php & echo 'Cron emails lidos a meia noite = ok' >> ~/cron.log
+* 0 * * * curl https://chegarapido.com.br/cron/email-total-de-lidos.php & echo 'Cron emails lidos a meia noite = ok' >> ~/cron.log
 
 # relatorio total estabelecimentos de 30 em 30 min
 */30 8-23 * * *  curl https://chegarapido.com.br/cron/relatorio-totalizador-estabelecimentos.php & echo 'Cron relatorio total de estabelecimentos = ok' >> ~/cron.log
@@ -62,12 +85,18 @@
 30 23 * * * curl https://chegarapido.com.br/cron/estornar-cashbacks-de-pedidos-extornados.php & echo 'Cron check pedidos extornados = ok' >> ~/cron.log
 
 # email marketing aniversariantes todos os dias a meia noite
-0 0 * * *  curl https://chegarapido.com.br/cron/envio-email-marketing-para-pessoas-aniversariantes.php & echo 'Cron email marketing aniversariantes = ok' >> ~/cron.log
+* 0 * * *  curl https://chegarapido.com.br/cron/envio-email-marketing-para-pessoas-aniversariantes.php & echo 'Cron email marketing aniversariantes = ok' >> ~/cron.log
 
 # email marketing geral todos os dias a meia noite
-0 0 * * * curl https://chegarapido.com.br/cron/envio-email-marketing.php & echo 'Cron email marketing geral = ok' >> ~/cron.log
+* 0 * * * curl https://chegarapido.com.br/cron/envio-email-marketing.php & echo 'Cron email marketing geral = ok' >> ~/cron.log
 
 # check dashboard todo dia
-0 0,12 * * *  curl https://chegarapido.com.br/cron/dashboard.php & echo 'Cron check dashboard = ok' >> ~/cron.log
+0 */6 * * *  curl https://chegarapido.com.br/cron/dashboard.php & echo 'Cron check dashboard = ok' >> ~/cron.log
 
-"
+# aniversariantes do dia as 6 da manha
+
+* 6 * * * curl https://chegarapido.com.br/cron/cupons-aniversariantes-do-dia.php & echo 'Cron cupons aniversariantes = ok' >> ~/cron.log
+
+# expira cupons a cada hora
+
+* * * * * curl https://chegarapido.com.br/cron/cupons-expira.php & echo 'Cron cupons aniversariantes = ok' >> ~/cron.log
